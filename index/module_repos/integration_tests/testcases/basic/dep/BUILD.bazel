@@ -1,0 +1,27 @@
+# Re-export a private `cc_library` from another package. Indexing must report
+# this label while still deriving include paths from `//hidden`.
+alias(
+    name = "hidden",
+    actual = "//hidden",
+    visibility = ["//visibility:public"],
+)
+
+# Two aliases for one public target. The repository-named one wins.
+alias(
+    name = "dep",
+    actual = "//core:core",
+    visibility = ["//visibility:public"],
+)
+
+alias(
+    name = "core_library",
+    actual = "//core:core",
+    visibility = ["//visibility:public"],
+)
+
+# Re-exports a private `cc_proto_library`.
+alias(
+    name = "shared_cc_proto",
+    actual = "//hidden:shared_cc_proto",
+    visibility = ["//visibility:public"],
+)
